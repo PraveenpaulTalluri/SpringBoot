@@ -1,0 +1,5 @@
+insert into alien values (101,'Paul','java')
+insert into alien values (102,'Pauli','c')
+insert into alien values (103,'Pau','c++')
+insert into alien values (104,'Pa','py')
+insert into alien values (105,'P','java')

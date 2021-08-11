@@ -4,15 +4,21 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Home</title>
+<title>Insert title here</title>
 </head>
 <body>
-
+Input form
 <form action="addAlien">
 	<input type ="text" name="aid"><br>
 	<input type ="text" name="aname"><br>
+	<input type="text" name="tech"><br>
 	<input type ="submit"><br>
 </form>
 
+Query form
+<form action="getAlien">
+	<input type ="text" name="aid"><br>
+	<input type ="submit"><br>
+</form>
 </body>
 </html>
