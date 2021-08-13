@@ -4831,3 +4831,21 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-08-13 21:18:30.677
 !MESSAGE executing callback sts4.classpath.BtoIgfXU SUCCESS [done]
+
+!ENTRY Activator 1 0 2021-08-13 21:24:09.369
+!MESSAGE Has main method computation for project 'springbootjpa'
+
+!ENTRY Activator 1 0 2021-08-13 21:24:09.370
+!MESSAGE Has main method computation for project 'order'
+
+!ENTRY Activator 1 0 2021-08-13 21:24:09.372
+!MESSAGE Has main method computation for project 'firstproject'
+
+!ENTRY Activator 1 0 2021-08-13 21:24:10.485
+!MESSAGE Has main method computation for project 'firstproject'
+
+!ENTRY Activator 1 0 2021-08-13 21:24:10.487
+!MESSAGE Has main method computation for project 'order'
+
+!ENTRY Activator 1 0 2021-08-13 21:24:10.488
+!MESSAGE Has main method computation for project 'springbootjpa'
