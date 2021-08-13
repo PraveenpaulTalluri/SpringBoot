@@ -33,8 +33,8 @@ public class AlienController {
 	public ModelAndView getAlien(@RequestParam int aid)
 	{
 		ModelAndView mv=new ModelAndView("show.jsp");
-		//Alien alien=repo.findById(aid).orElse(new Alien());
-		List<Alien> alien=repo.findByAidGreaterThan(aid);
+		Alien alien=repo.findById(aid).orElse(new Alien());
+		//List<Alien> alien=repo.findByAidGreaterThan(aid);
 		System.out.println(repo.findByTech("java"));
 		System.out.println(repo.findByAidGreaterThan(102));
 		mv.addObject(alien);
