@@ -1,10 +1,9 @@
 package com.app.order.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,61 +16,68 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.order.exception.ResourceNotFoundException;
 import com.app.order.model.Order;
-import com.app.order.repository.OrderRepository;
+import com.app.order.model.OrdersList;
+import com.app.order.service.OrderService;
 
 
 @RestController
 @RequestMapping("/api")
 public class OrderController {
+	
+	private static final Logger log = LoggerFactory.getLogger(OrderController.class);
+	
 	@Autowired
-	private OrderRepository orderRepository;
-
+	OrderService orderservice;
+	
 	@GetMapping("/orders")
-	public List<Order> getAllOrders() {
-		return orderRepository.findAll();
+	public ResponseEntity<OrdersList> getAllOrders() {
+		
+		return ResponseEntity.ok().body(orderservice.getAllOrders()) ;
 	}
 
 	@GetMapping("/orders/{id}")
 	public ResponseEntity<Order> getOrderById(@PathVariable(value = "id") Long orderId)
-			throws ResourceNotFoundException {
-		Order order = orderRepository.findById(orderId)
-				.orElseThrow(() -> new ResourceNotFoundException("Order not found for this id :: " + orderId));
-		return ResponseEntity.ok().body(order);
+	 {
+		Order orderObj= null;
+		log.info("OrderId is "+orderId);
+		orderObj= orderservice.getOrderById(orderId);
+		if(orderObj!=null) {
+			return ResponseEntity.ok().body(orderObj);
+		}else {
+			return new ResponseEntity<Order>(orderObj, HttpStatus.NOT_FOUND);
+		}
+		
 	}
 	
 	@GetMapping("/ordersByName/{name}")
-	public List<Order> getOrderByName(@PathVariable(value = "name") String name){
-		return orderRepository.findByName(name);
+	public ResponseEntity<OrdersList> getOrderByName(@PathVariable(value = "name") String name)
+	{
+		return ResponseEntity.ok().body(orderservice.getOrderByName(name));
 	}
 
 	@PostMapping("/orders")
-	public Order createOrder(@RequestBody Order order) {
-		return orderRepository.save(order);
+	public ResponseEntity<Order> createOrder(@RequestBody Order order) {
+		
+		Order orderObj= orderservice.save(order);
+		return ResponseEntity.ok().body(orderObj);
+		
 	}
 
 	@PutMapping("/orders/{id}")
 	public ResponseEntity<Order> updateOrder(@PathVariable(value = "id") Long orderId,
 			@RequestBody Order orderDetails) throws ResourceNotFoundException {
-		Order order = orderRepository.findById(orderId)
-				.orElseThrow(() -> new ResourceNotFoundException("Order not found for this id :: " + orderId));
-
-		order.setDescription(orderDetails.getDescription());;
-		order.setName(orderDetails.getName());
-		order.setQuantity(orderDetails.getQuantity());
-		final Order updatedOrder = orderRepository.save(order);
+		log.info("OrderId is "+orderId);
+		Order updatedOrder =orderservice.updateOrder(orderId, orderDetails);
 		return ResponseEntity.ok(updatedOrder);
 	}
 
+	
 	@DeleteMapping("/orders/{id}")
-	public Map<String, Boolean> deleteOrder(@PathVariable(value = "id") Long orderId)
+	public ResponseEntity<String> deleteOrder(@PathVariable(value = "id") Long orderId)
 			throws ResourceNotFoundException {
-		Order order = orderRepository.findById(orderId)
-				.orElseThrow(() -> new ResourceNotFoundException("Order not found for this id :: " + orderId));
-
-		orderRepository.delete(order);
-		Map<String, Boolean> response = new HashMap<>();
-		response.put("deleted", Boolean.TRUE);
-		return response;
+		log.info("OrderId is "+orderId);
+		orderservice.deleteOrder(orderId);
+		String deleteStatus= "Order with id "+ orderId +" deleted successfully";
+		return ResponseEntity.ok(deleteStatus);
 	}
-
 }

@@ -1,5 +1,7 @@
 package com.app.order.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,10 +13,14 @@ import javax.persistence.Table;
 @Table(name = "orders")
 public class Order {
 	
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@Column(name = "name", nullable = false)
 	private String name;
+	@Column(name = "quantity", nullable = false)
 	private Integer quantity;
+	@Column(name = "description", nullable = false)
 	private String description ;
 	
 	public Order(long id, String name, Integer quantity, String description) {
@@ -24,32 +30,30 @@ public class Order {
 		this.quantity = quantity;
 		this.description = description;
 	}
-	public Order() {
-		
+	public Order() {	
 	}
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+
 	public long getId() {
 		return id;
 	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	@Column(name = "name", nullable = false)
+	
+	
+	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	@Column(name = "quantity", nullable = false)
+	
+	
 	public Integer getQuantity() {
 		return quantity;
 	}
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-	@Column(name = "description", nullable = false)
+	
 	public String getDescription() {
 		return description;
 	}
