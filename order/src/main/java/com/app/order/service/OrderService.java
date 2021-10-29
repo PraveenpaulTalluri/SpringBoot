@@ -38,7 +38,8 @@ public class OrderService {
 	}
 
 	public OrdersList getOrderByName( String name){
-		OrdersList orderslist = new OrdersList();
+		OrdersList orderslist=null;
+		 orderslist = new OrdersList();
 		orderslist.setOrder(orderRepository.findByName(name));
 		return orderslist;
 	}

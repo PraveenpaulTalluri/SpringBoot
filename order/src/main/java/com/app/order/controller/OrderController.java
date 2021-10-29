@@ -31,10 +31,13 @@ public class OrderController {
 	
 	@GetMapping("/orders")
 	public ResponseEntity<OrdersList> getAllOrders() {
-		
+		log.info("Get all orders");
 		return ResponseEntity.ok().body(orderservice.getAllOrders()) ;
 	}
 
+	
+	
+	
 	@GetMapping("/orders/{id}")
 	public ResponseEntity<Order> getOrderById(@PathVariable(value = "id") Long orderId)
 	 {
@@ -49,20 +52,29 @@ public class OrderController {
 		
 	}
 	
+	
+	
+	
 	@GetMapping("/ordersByName/{name}")
 	public ResponseEntity<OrdersList> getOrderByName(@PathVariable(value = "name") String name)
 	{
+		log.info("OrderName is "+name);
 		return ResponseEntity.ok().body(orderservice.getOrderByName(name));
 	}
 
+	
+	
 	@PostMapping("/orders")
 	public ResponseEntity<Order> createOrder(@RequestBody Order order) {
 		
 		Order orderObj= orderservice.save(order);
+		log.info("Order is "+order);
 		return ResponseEntity.ok().body(orderObj);
 		
 	}
 
+	
+	
 	@PutMapping("/orders/{id}")
 	public ResponseEntity<Order> updateOrder(@PathVariable(value = "id") Long orderId,
 			@RequestBody Order orderDetails) throws ResourceNotFoundException {
