@@ -70,7 +70,6 @@ INDEX VERSION 1.131+C:\Users\praveen_t\Documents\workspace-spring-tool-suite-4-4
 3211196101.index
 2127091321.index
 1058569657.index
-1306806701.index
 2284581855.index
 4147282772.index
 1564702882.index

@@ -15644,3 +15644,18 @@ java.util.concurrent.TimeoutException
 
 !ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-11-17 15:08:40.594
 !MESSAGE executing callback sts4.classpath.RyMckVcB SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-11-17 17:43:43.109
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-11-17 17:43:43.127
+!MESSAGE classpath=92 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-11-17 17:43:43.133
+!MESSAGE buffering callback sts4.classpath.RyMckVcB student false 92
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-11-17 17:43:43.134
+!MESSAGE executing callback sts4.classpath.RyMckVcB 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-11-17 17:43:43.192
+!MESSAGE executing callback sts4.classpath.RyMckVcB SUCCESS [done]
