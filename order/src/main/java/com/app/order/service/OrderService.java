@@ -1,5 +1,7 @@
 package com.app.order.service;
 
+import java.util.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.app.order.controller.OrderController;
 import com.app.order.exception.ResourceNotFoundException;
 import com.app.order.model.Order;
-import com.app.order.model.OrdersList;
 import com.app.order.repository.OrderRepository;
 
 @Service
@@ -19,10 +20,8 @@ public class OrderService {
 	@Autowired
 	private OrderRepository orderRepository;
 	
-	public OrdersList getAllOrders() {
-		OrdersList orderslist = new OrdersList();
-		orderslist.setOrder(orderRepository.findAll());
-		return orderslist;
+	public List<Order> getAllOrders() {
+		return orderRepository.findAll();
 	}
 	
 	public Order getOrderById( Long orderId)
@@ -37,11 +36,8 @@ public class OrderService {
 		return order;
 	}
 
-	public OrdersList getOrderByName( String name){
-		OrdersList orderslist=null;
-		 orderslist = new OrdersList();
-		orderslist.setOrder(orderRepository.findByName(name));
-		return orderslist;
+	public List<Order> getOrderByName( String name){
+		return orderRepository.findByName(name);
 	}
 
 	public Order save(Order order) {

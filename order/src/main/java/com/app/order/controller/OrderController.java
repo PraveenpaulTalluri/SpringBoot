@@ -1,5 +1,5 @@
 package com.app.order.controller;
-
+import java.util.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.order.exception.ResourceNotFoundException;
 import com.app.order.model.Order;
-import com.app.order.model.OrdersList;
 import com.app.order.service.OrderService;
 
 
@@ -30,7 +29,7 @@ public class OrderController {
 	OrderService orderservice;
 	
 	@GetMapping("/orders")
-	public ResponseEntity<OrdersList> getAllOrders() {
+	public ResponseEntity<List<Order>> getAllOrders() {
 		log.info("Get all orders");
 		return ResponseEntity.ok().body(orderservice.getAllOrders()) ;
 	}
@@ -56,7 +55,7 @@ public class OrderController {
 	
 	
 	@GetMapping("/ordersByName/{name}")
-	public ResponseEntity<OrdersList> getOrderByName(@PathVariable(value = "name") String name)
+	public ResponseEntity<List<Order>> getOrderByName(@PathVariable(value = "name") String name)
 	{
 		log.info("OrderName is "+name);
 		return ResponseEntity.ok().body(orderservice.getOrderByName(name));
